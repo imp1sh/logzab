@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# analysis
+# adjust to your needs
+# enable or disable shorewall analysis
+dofail2ban=true
+# enable or disable system authentication analysis
+doauth=true
+# enable or disable dovecot checks
+dodovecot=true
+# enable or disable postfix analysis
+
+# logfiles
+# default paths should work or adjust if needed
+# syslog file and offset file
+syslogpath="/var/log/syslog"
+# auth file and offset file
+authlogpath="/var/log/auth.log"
+# fail2ban log and offset file
+fail2banpath="/var/log/fail2ban.log"
+# dovecot and or postfix log and offset file
+maillogpath="/var/log/mail.log"
+
+# applications
+# fail2ban
+fail2banoffset="${fail2banpath}.logzab.offset"
+# dovecot
+maillogoffset_dovecot="${maillogpath}.logzab.dovecot.offset"
+# postfix
+maillogoffset_postfix="${maillogpath}.logzab.postfix.offset"
+# OS authentication
+authlogoffset="${authlogpath}.lobzab.offset"
