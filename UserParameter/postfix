@@ -1,0 +1,19 @@
+UserParameter=postfix_mailq,mailq | grep -v "Mail queue is empty" | grep -c '^[0-9A-Z]'
+UserParameter=postfix[*],/usr/local/bin/postfix-zabbix-stats.bash $1
+
+UserParameter=postfix_received, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep received|grep -v byte|awk '{print $1}'
+UserParameter=postfix_delivered, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep delivered|grep -v byte |grep -v time|awk '{print $1}'
+UserParameter=postfix_forwarded, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep forwarded | awk '{print $1}'
+UserParameter=postfix_deferred, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep deferred | awk '{print $1}'
+UserParameter=postfix_bounced, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep bounced | awk '{print $1}'
+UserParameter=postfix_rejected, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep rejected | awk '{print $1}'
+UserParameter=postfix_rejectwarnings, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep "reject warnings" | awk '{print $1}'
+UserParameter=postfix_held, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep held | awk '{print $1}'
+UserParameter=postfix_discarded, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep discarded | awk '{print $1}'
+UserParameter=postfix_received_kbyte, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep "bytes received" | awk '{print $1}' | awk -Fk '{print $1}'
+UserParameter=postfix_delivered_kbyte, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep "bytes delivered" | awk '{print $1}' | awk -Fk '{print $1}'
+UserParameter=postfix_senders, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep senders | awk '{print $1}'
+UserParameter=postfix_sendinghosts, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep "sending hosts" | awk '{print $1}'
+UserParameter=postfix_recipients, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep "recipients" | awk '{print $1}'
+UserParameter=postfix_recipienthosts, /bin/cat /var/log/mail.log | /usr/sbin/pflogsumm -d today |grep "Grand Totals" -A 22 |grep "recipient hosts" | awk '{print $1}'
+

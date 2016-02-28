@@ -1,0 +1,4 @@
+#UserParameter=dovecot.pop3-login, sudo /usr/sbin/logtail -f /var/log/mail.log -o /var/log/mailpop.offset | grep pop3-login | wc -l
+#UserParameter=dovecot.imap-login, sudo /usr/sbin/logtail -f /var/log/mail.log -o /var/log/mailimap.offset | grep imap-login | wc -l
+UserParameter=dovecot.imap-login, grep -c imap-login /var/log/mail.log
+UserParameter=dovecot.pop3-login, grep -c pop3-login /var/log/mail.log

@@ -1,2 +1,14 @@
-UserParameter=fail2ban.sshban, sudo /usr/sbin/logtail -f /var/log/fail2ban.log -o /var/log/fail2ban.log.ssh.ban.offset | grep ssh |grep Ban | wc -l
-UserParameter=fail2ban.sshunban, sudo /usr/sbin/logtail -f /var/log/fail2ban.log -o /var/log/fail2ban.log.ssh.unban.offset | grep ssh |grep Unban | wc -l
+UserParameter=fail2ban.sshban, sudo /bin/grep ssh /var/log/fail2ban.log |grep -c Ban
+UserParameter=fail2ban.sshunban, sudo /bin/grep ssh /var/log/fail2ban.log |grep -c Unban
+
+UserParameter=fail2ban.dovecotban, sudo /bin/grep dovecot /var/log/fail2ban.log |grep -c Ban
+UserParameter=fail2ban.dovecotunban, sudo /bin/grep dovecot /var/log/fail2ban.log |grep -c Unban
+
+UserParameter=fail2ban.postfixban, sudo /bin/grep postfix /var/log/fail2ban.log |grep -c Ban
+UserParameter=fail2ban.postfixunban, sudo /bin/grep postfix /var/log/fail2ban.log |grep -c Unban
+
+UserParameter=fail2ban.postfix-saslban, sudo /bin/grep postfix-sasl /var/log/fail2ban.log |grep -c Ban
+UserParameter=fail2ban.postfix-saslunban, sudo /bin/grep postfix-sasl /var/log/fail2ban.log |grep -c Unban
+
+UserParameter=fail2ban.sieveban, sudo /bin/grep sieve /var/log/fail2ban.log |grep -c Ban
+UserParameter=fail2ban.sieveunban, sudo /bin/grep sieve /var/log/fail2ban.log |grep -c Unban
