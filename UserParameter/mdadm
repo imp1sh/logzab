@@ -1,0 +1,4 @@
+UserParameter=mdadm.active[*], sudo /sbin/mdadm --detail $1 | /bin/grep "Active Devices" | /usr/bin/awk '{print $$4}'
+UserParameter=mdadm.working[*], sudo /sbin/mdadm --detail $1 | /bin/grep "Working Devices" | /usr/bin/awk '{print $$4}'
+UserParameter=mdadm.failed[*], sudo /sbin/mdadm --detail $1 | /bin/grep "Failed Devices" | /usr/bin/awk '{print $$4}'
+UserParameter=mdadm.spare[*], sudo /sbin/mdadm --detail $1 | /bin/grep "Spare Devices" | /usr/bin/awk '{print $$4}'

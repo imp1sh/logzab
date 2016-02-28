@@ -1,0 +1,2 @@
+UserParameter=fail2ban.sshban, sudo /usr/sbin/logtail -f /var/log/fail2ban.log -o /var/log/fail2ban.log.ssh.ban.offset | grep ssh |grep Ban | wc -l
+UserParameter=fail2ban.sshunban, sudo /usr/sbin/logtail -f /var/log/fail2ban.log -o /var/log/fail2ban.log.ssh.unban.offset | grep ssh |grep Unban | wc -l

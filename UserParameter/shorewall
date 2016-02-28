@@ -1,0 +1,2 @@
+UserParameter=shorewall.reject_ifout[*], sudo grep REJECT /var/log/syslog | grep -c "OUT=$1"
+UserParameter=shorewall.reject_fw, sudo grep REJECT /var/log/syslog | grep -c "OUT= "
