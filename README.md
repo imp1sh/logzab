@@ -1,8 +1,9 @@
 # logzab
-Zabbix log analyser for debian bases operating systems. It just finds string occurences in logfiles and count them based upon specific criteria.
+Zabbix log analyser for Unix compatible operating systems. It just finds string occurences in logfiles and counts them based upon specific criteria. Those occurences are being used for convenience by getting nice graphs.
+
 
 ## OS
-Debian / Ubuntu. Might work on other compatible GNU/Linux OSes but only tested on Debian 8 and Ubuntu 14.04.
+Tested on Debian / Ubuntu. Might work on other compatible GNU/Linux OSes.
 
 ## What it does
 This script collection analyses logfiles to gather statistical data from the specific services or applications, like:
@@ -14,8 +15,9 @@ This script collection analyses logfiles to gather statistical data from the spe
 - /var/log/auth.log
 - more to come
 
-Later we will also deliver template files for zabbix.
-It'll count for example how often packets were blocked in shorewall or failed ssh logins or fail2ban Ban / Unban actions
+Later we will also deliver template files for zabbix. Template files for logzab apps that offer a second parameter are not there.
+Logzab wil e.g. count how often packets were blocked in shorewall, failed ssh logins or fail2ban events.
+Theoretically it is also some kind of a very flexible log analyser.
 
 ## Requirements
 - logtail
@@ -27,6 +29,7 @@ It'll count for example how often packets were blocked in shorewall or failed ss
 - cd logzab
 - ln -s logzab_zabbix_include /etc/zabbix/zabbix_agentd.conf.d/
 - restart zabbix agent
+- see Usage!
 
 ## Usage
 - use logzab item like this for example: logzab[shorewalldropifin,eth0]
