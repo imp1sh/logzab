@@ -25,4 +25,13 @@ It'll count for example how often packets were blocked in shorewall or failed ss
 - cd opt
 - git clone https://github.com/imp1sh/logzab.git
 - cd logzab
+- ln -s logzab_zabbix_include /etc/zabbix/zabbix_agentd.conf.d/
+- restart zabbix agent
+
+## Usage
+- use logzab item like this for example: logzab[shorewalldropifin,eth0]
+- logzab is the UserParameter, first parameter is the app, second parameter is optional and only needed when a selection is necessary, like with shorewalldropifin (i.e. the interface as selector)
+- look in taillogit.bash for a list of available apps
+
+
 
