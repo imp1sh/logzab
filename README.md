@@ -10,6 +10,7 @@ This script collection analyses logfiles to gather statistical data from the spe
 - shorewall
 - dovecot
 - postfix
+- fail2ban
 - /var/log/auth.log
 - more to come
 
@@ -18,3 +19,10 @@ It'll count for example how often packets were blocked in shorewall or failed ss
 
 ## Requirements
 - logtail
+- pflogsumm for postfix analysis
+
+## Installation
+- cd opt
+- git clone https://github.com/imp1sh/logzab.git
+- cd logzab
+
