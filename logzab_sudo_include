@@ -1,0 +1,1 @@
+zabbix  ALL = NOPASSWD: /opt/logzab/taillogit.bash, /usr/sbin/logtail, /var/log/syslog, /var/log/mail.log, /var/log/maillog
