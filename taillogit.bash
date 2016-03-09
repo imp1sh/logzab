@@ -206,40 +206,123 @@ else
 	postfixreceived)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixreceived[0]}"
                 if [ $? -eq 0 ]; then
-			# echo "yes"
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceived[2]}" -A 22 | $greppath -v byte | $greppath "${postfixreceived[3]}" | awk '{print $1}'
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceived[1]}" -A 22 | $greppath -v byte | $greppath "${postfixreceived[2]}" | awk '{print $1}'
 		else
-			echo "no"
 			exit 3
 		fi
 		;;
 	postfixdevlivered)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdevlivered[0]}"
+		if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixdevlivered[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdevlivered[1]}" -A 22 | $greppath -v byte | $greppath "${postfixdevlivered[2]}" | awk '{print $1}'
+		else
+			exit 3
+		fi
 		;;
 	postfixforwarded)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixforwarded[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixforwarded[1]}" -A 22 | $greppath "${postfixforwarded[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixdeferred)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdeferred[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdeferred[1]}" -A 22 | $greppath "${postfixdeferred[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixbounced)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixbounced[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixbounced[1]}" -A 22 | $greppath "${postfixbounced[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixrejected)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrejected[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejected[1]}" -A 22 | $greppath "${postfixrejected[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixrejecttwarning)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrejecttwarning[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejecttwarning[1]}" -A 22 | $greppath "${postfixrejecttwarning[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixheld)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixheld[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixheld[1]}" -A 22 | $greppath "${postfixheld[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixdiscarded)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdiscarded[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdiscarded[1]}" -A 22 | $greppath "${postfixdiscarded[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixreceivedkbyte)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixreceivedkbyte[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceivedkbyte[1]}" -A 22 | $greppath "${postfixreceivedkbyte[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixdeliveredkbyte)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdeliveredkbyte[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdeliveredkbyte[1]}" -A 22 | $greppath "${postfixdeliveredkbyte[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixsenders)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixsenders[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixsenders[1]}" -A 22 | $greppath "${postfixsenders[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixsendinghosts)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixsendinghosts[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixsendinghosts[1]}" -A 22 | $greppath "${postfixsendinghosts[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
+
 		;;
 	postfixrecipients)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrecipients[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrecipients[1]}" -A 22 | $greppath "${postfixrecipients[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	postfixrecipienthosts)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrecipienthosts[0]}"
+                if [ $? -eq 0 ]; then
+			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrecipienthosts[1]}" -A 22 | $greppath "${postfixrecipienthosts[2]}" | awk '{print $1}'
+                else
+                        exit 3
+                fi
 		;;
 	*)
 		echo "something went wrong, probably wrong application selected."
