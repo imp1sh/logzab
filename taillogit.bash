@@ -206,12 +206,12 @@ else
 	postfixreceived)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixreceived[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceived[1]}" -A 22 | $greppath -v byte | $greppath "${postfixreceived[2]}" | awk '{print $1}'
+			 sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceived[1]}" -A 22 | $greppath -v byte | $greppath "${postfixreceived[2]}" | awk '{print $1}'
 		else
 			exit 3
 		fi
 		;;
-	postfixdevlivered)
+	postfixdelivered)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdevlivered[0]}"
 		if [ $? -eq 0 ]; then
 			 $logtailpath -f "${postfixdevlivered[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdevlivered[1]}" -A 22 | $greppath -v byte | $greppath "${postfixdevlivered[2]}" | awk '{print $1}'
@@ -251,7 +251,7 @@ else
                         exit 3
                 fi
 		;;
-	postfixrejecttwarning)
+	postfixrejectwarning)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrejecttwarning[0]}"
                 if [ $? -eq 0 ]; then
 			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejecttwarning[1]}" -A 22 | $greppath "${postfixrejecttwarning[2]}" | awk '{print $1}'
