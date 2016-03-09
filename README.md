@@ -27,9 +27,10 @@ Theoretically it is also some kind of a very flexible log analyser.
 - cd opt
 - git clone https://github.com/imp1sh/logzab.git
 - cd logzab
-- ln -s logzab_zabbix_include /etc/zabbix/zabbix_agentd.conf.d/
 - ln -s /opt/logzab/logzab_sudo_include /etc/sudoers.d/
 - maybe you need to add logfiles in logzab_sudo_include in order to make it work properly
+- also if you installed logzab to a different directory you need to updated the path in logzab_sudo_include
+- ln -s /opt/logzab/logzab_zabbix_include /etc/zabbix/zabbix_agentd.conf.d/
 - restart zabbix agent
 - see Usage!
 
