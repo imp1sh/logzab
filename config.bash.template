@@ -25,24 +25,23 @@ fail2banpostfixsaslunban=("/var/log/fail2ban.log" "fail2banpostfixsaslunban" "po
 fail2bansieveban=("/var/log/fail2ban.log" "logfail2bansieveban" "sieve")
 fail2bansieveunban=("/var/log/fail2ban.log" "fail2bansieveunban" "sieve")
 # postfix
-postfixreceived=("/var/log/mail.log" "postfixdevlivered" "Grand Totals" "received")
-postfixdevlivered=("/var/log/mail.log" "delivered")
-postfixforwarded=("/var/log/mail.log" "forwarded")
-postfixdeferred=("/var/log/mail.log" "deferred")
-postfixbounced=("/var/log/mail.log" "bounced")
-postfixrejected=("/var/log/mail.log" "rejected")
-postfixrejectwarning=("/var/log/mail.log" "reject warnings")
-postfixheld=("/var/log/mail.log" "held")
-postfixdiscarded=("/var/log/mail.log" "discarded")
-postfixreceivedkbyte=("/var/log/mail.log" "bytes received")
-postfixdeliveredkbyte=("/var/log/mail.log" "bytes delivered")
-postfixsenders=("/var/log/mail.log" "senders")
-postfixsendinghosts=("/var/log/mail.log" "sending hosts")
-postfixrecipients=("/var/log/mail.log" "recipients")
-postfixrecipienthosts=("/var/log/mail.log" "recipientt hosts")
+postfixreceived=("/var/log/mail.log" "Grand\\ Totals" "received")
+postfixdevlivered=("/var/log/mail.log" "Grand\ Totals" "delivered")
+postfixforwarded=("/var/log/mail.log" "Grand\ Totals" "forwarded")
+postfixdeferred=("/var/log/mail.log" "Grand\ Totals" "deferred")
+postfixbounced=("/var/log/mail.log" "Grand\ Totals" "bounced")
+postfixrejected=("/var/log/mail.log" "Grand\ Totals" "rejected")
+postfixrejectwarning=("/var/log/mail.log" "Grand\ Totals" "reject\ warnings")
+postfixheld=("/var/log/mail.log" "Grand\ Totals" "held")
+postfixdiscarded=("/var/log/mail.log" "Grand\ Totals" "discarded")
+postfixreceivedkbyte=("/var/log/mail.log" "Grand\ Totals" "bytes\ received")
+postfixdeliveredkbyte=("/var/log/mail.log" "Grand\ Totals" "bytes\ delivered")
+postfixsenders=("/var/log/mail.log" "Grand\ Totals" "senders")
+postfixsendinghosts=("/var/log/mail.log" "Grand\ Totals" "sending\ hosts")
+postfixrecipients=("/var/log/mail.log" "Grand\ Totals" "recipients")
+postfixrecipienthosts=("/var/log/mail.log" "Grand\ Totals" "recipient\ hosts")
 
-# app paths
-# set it up for your system
+# other
 logtailpath="/usr/sbin/logtail"
 pflogsummpath="/usr/sbin/pflogsumm"
 offsetspath="offsets"
