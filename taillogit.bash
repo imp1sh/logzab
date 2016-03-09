@@ -70,6 +70,8 @@ function checkall {
 			return 1
 		fi
 	else
+		# exit 2 if first parameter appended to taillogit.bash is missing
+		echo "the necessary parameters are not given. Please RTFM and retry."
 		exit 2
 	fi
 }
@@ -78,7 +80,8 @@ function checkall {
 # second parameter is offset filename. this parameter might conflict, so we just check if it's already taken and if so, just don't do the userparameter but exit with !=0
 # third parameter is the expression 
 #if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
-if [ -z "$1" ]; then
+checkone "$1"
+if [ ! $? -eq 0 ]; then
 	echo "the necessary parameters are not given. Please RTFM and retry."
 	exit 2
 else
