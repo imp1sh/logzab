@@ -94,7 +94,7 @@ else
 	shorewalldropifout)
 		checkall  "$1" "$2"  "$scriptdir/$offsetspath/$1$2" "${shorewalldropifout[0]}"
 		if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${shorewalldropifout[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${shorewalldropifout[2]}" | $greppath -c "OUT=$expression"
+			$logtailpath -f "${shorewalldropifout[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${shorewalldropifout[2]}" | $greppath -c "OUT=$expression"
 		else
 			exit 3
 		fi
@@ -102,7 +102,7 @@ else
 	shorewalldropifin)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${shorewalldropifin[0]}"
 		if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${shorewalldropifin[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${shorewalldropifin[2]}" | $greppath -c "IN=$expression"
+			 $logtailpath -f "${shorewalldropifin[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${shorewalldropifin[2]}" | $greppath -c "IN=$expression"
 		else
 			exit 3
 		fi
@@ -110,7 +110,7 @@ else
 	dovecotpop3login)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${dovecotpop3login[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${dovecotpop3login[0]}"  -o "$scriptdir/$offsetspath/$1$2" | $greppath -c "${dovecotpop3login[2]}"
+			 $logtailpath -f "${dovecotpop3login[0]}"  -o "$scriptdir/$offsetspath/$1$2" | $greppath -c "${dovecotpop3login[2]}"
 		else
 			exit 3
 		fi
@@ -118,7 +118,7 @@ else
 	dovecotimaplogin)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${dovecotimaplogin[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${dovecotimaplogin[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath -c "${dovecotimaplogin[2]}"
+			 $logtailpath -f "${dovecotimaplogin[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath -c "${dovecotimaplogin[2]}"
 		else
 			exit 3
 		fi
@@ -126,7 +126,7 @@ else
 	fail2bansshban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bansshban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2bansshban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansshban[2]}" | $greppath -c Ban
+			 $logtailpath -f "${fail2bansshban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansshban[2]}" | $greppath -c Ban
 		else
 			exit 3
 		fi
@@ -134,7 +134,7 @@ else
 	fail2bansshunban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bansshunban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2bansshunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansshunban[2]}" | $greppath -c Unban
+			 $logtailpath -f "${fail2bansshunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansshunban[2]}" | $greppath -c Unban
 		else
 			exit 3
 		fi
@@ -142,7 +142,7 @@ else
 	fail2bandovecotban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bandovecotban[0]}"
                 if [ $? -eq 0 ]; then	
-			sudo $logtailpath -f "${fail2bandovecotban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bandovecotban[2]}" | $greppath -c Ban
+			 $logtailpath -f "${fail2bandovecotban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bandovecotban[2]}" | $greppath -c Ban
 		else
 			exit 3
 		fi
@@ -150,7 +150,7 @@ else
 	fail2bandovecotunban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bandovecotunban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2bandovecotunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bandovecotunban[2]}" | $greppath -c Unban
+			 $logtailpath -f "${fail2bandovecotunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bandovecotunban[2]}" | $greppath -c Unban
 		else
 			exit 3
 		fi
@@ -158,7 +158,7 @@ else
 	fail2banpostfixban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2banpostfixban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2banpostfixban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixban[2]}" | $greppath -c Ban
+			 $logtailpath -f "${fail2banpostfixban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixban[2]}" | $greppath -c Ban
 		else
 			exit 3
 		fi
@@ -166,7 +166,7 @@ else
 	fail2banpostfixunban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2banpostfixunban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2banpostfixunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixunban[2]}" | $greppath -c Unban
+			 $logtailpath -f "${fail2banpostfixunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixunban[2]}" | $greppath -c Unban
 		else
 			exit 3
 		fi
@@ -174,7 +174,7 @@ else
 	fail2banpostfixsaslban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2banpostfixsaslban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2banpostfixsaslban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixsaslban[2]}" | $greppath -c Ban
+			 $logtailpath -f "${fail2banpostfixsaslban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixsaslban[2]}" | $greppath -c Ban
 		else
 			exit 3
 		fi
@@ -182,7 +182,7 @@ else
 	fail2banpostfixsaslunban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2banpostfixsaslunban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2banpostfixsaslunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixsaslunban[2]}" | $greppath -c Unban
+			 $logtailpath -f "${fail2banpostfixsaslunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixsaslunban[2]}" | $greppath -c Unban
 		else
 			exit 3
 		fi
@@ -190,7 +190,7 @@ else
 	fail2bansieveban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bansieveban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2bansieveban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansieveban[2]}" | $greppath -c Ban
+			 $logtailpath -f "${fail2bansieveban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansieveban[2]}" | $greppath -c Ban
 		else
 			exit 3
 		fi
@@ -198,7 +198,7 @@ else
 	fail2bansieveunban)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bansieveunban[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${fail2bansieveunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansieveunban[2]}" | $greppath -c Unban
+			 $logtailpath -f "${fail2bansieveunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansieveunban[2]}" | $greppath -c Unban
 		else
 			exit 3
 		fi
@@ -206,7 +206,7 @@ else
 	postfixreceived)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixreceived[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceived[1]}" -A 22 | $greppath -v byte | $greppath "${postfixreceived[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceived[1]}" -A 22 | $greppath -v byte | $greppath "${postfixreceived[2]}" | awk '{print $1}'
 		else
 			exit 3
 		fi
@@ -214,7 +214,7 @@ else
 	postfixdevlivered)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdevlivered[0]}"
 		if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixdevlivered[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdevlivered[1]}" -A 22 | $greppath -v byte | $greppath "${postfixdevlivered[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixdevlivered[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdevlivered[1]}" -A 22 | $greppath -v byte | $greppath "${postfixdevlivered[2]}" | awk '{print $1}'
 		else
 			exit 3
 		fi
@@ -222,7 +222,7 @@ else
 	postfixforwarded)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixforwarded[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixforwarded[1]}" -A 22 | $greppath "${postfixforwarded[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixforwarded[1]}" -A 22 | $greppath "${postfixforwarded[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -230,7 +230,7 @@ else
 	postfixdeferred)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdeferred[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdeferred[1]}" -A 22 | $greppath "${postfixdeferred[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdeferred[1]}" -A 22 | $greppath "${postfixdeferred[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -238,7 +238,7 @@ else
 	postfixbounced)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixbounced[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixbounced[1]}" -A 22 | $greppath "${postfixbounced[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixbounced[1]}" -A 22 | $greppath "${postfixbounced[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -246,7 +246,7 @@ else
 	postfixrejected)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrejected[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejected[1]}" -A 22 | $greppath "${postfixrejected[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejected[1]}" -A 22 | $greppath "${postfixrejected[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -254,7 +254,7 @@ else
 	postfixrejecttwarning)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrejecttwarning[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejecttwarning[1]}" -A 22 | $greppath "${postfixrejecttwarning[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejecttwarning[1]}" -A 22 | $greppath "${postfixrejecttwarning[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -262,7 +262,7 @@ else
 	postfixheld)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixheld[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixheld[1]}" -A 22 | $greppath "${postfixheld[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixheld[1]}" -A 22 | $greppath "${postfixheld[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -270,7 +270,7 @@ else
 	postfixdiscarded)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdiscarded[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdiscarded[1]}" -A 22 | $greppath "${postfixdiscarded[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdiscarded[1]}" -A 22 | $greppath "${postfixdiscarded[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -278,7 +278,7 @@ else
 	postfixreceivedkbyte)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixreceivedkbyte[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceivedkbyte[1]}" -A 22 | $greppath "${postfixreceivedkbyte[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceivedkbyte[1]}" -A 22 | $greppath "${postfixreceivedkbyte[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -286,7 +286,7 @@ else
 	postfixdeliveredkbyte)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdeliveredkbyte[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdeliveredkbyte[1]}" -A 22 | $greppath "${postfixdeliveredkbyte[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdeliveredkbyte[1]}" -A 22 | $greppath "${postfixdeliveredkbyte[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -294,7 +294,7 @@ else
 	postfixsenders)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixsenders[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixsenders[1]}" -A 22 | $greppath "${postfixsenders[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixsenders[1]}" -A 22 | $greppath "${postfixsenders[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -302,7 +302,7 @@ else
 	postfixsendinghosts)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixsendinghosts[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixsendinghosts[1]}" -A 22 | $greppath "${postfixsendinghosts[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixsendinghosts[1]}" -A 22 | $greppath "${postfixsendinghosts[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -311,7 +311,7 @@ else
 	postfixrecipients)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrecipients[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrecipients[1]}" -A 22 | $greppath "${postfixrecipients[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrecipients[1]}" -A 22 | $greppath "${postfixrecipients[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
@@ -319,7 +319,7 @@ else
 	postfixrecipienthosts)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrecipienthosts[0]}"
                 if [ $? -eq 0 ]; then
-			sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrecipienthosts[1]}" -A 22 | $greppath "${postfixrecipienthosts[2]}" | awk '{print $1}'
+			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrecipienthosts[1]}" -A 22 | $greppath "${postfixrecipienthosts[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi

@@ -27,7 +27,8 @@ Theoretically it is also some kind of a very flexible log analyser.
 - cd opt
 - git clone https://github.com/imp1sh/logzab.git
 - cd logzab
-- ln -s logzab_zabbix_include /etc/zabbix/zabbix_agentd.conf.d/
+- ln -s /opt/logzab/logzab_zabbix_include /etc/zabbix/zabbix_agentd.conf.d/
+- sudo NOPASSWD for /opt/logzab/taillogit.bash
 - restart zabbix agent
 - see Usage!
 
