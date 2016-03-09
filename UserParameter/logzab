@@ -1,2 +1,2 @@
-UserParameter=logzab[*], sudo /opt/logzab/taillogit.bash $1 $2 $3
+UserParameter=logzab[*], sudo /opt/logzab/taillogit.bash $1 $2
 #UserParameter=logzab[*], sudo /usr/sbin/logtail -f $1 -o /opt/logzab/offsets/$2 | $($3)
