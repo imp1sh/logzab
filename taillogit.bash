@@ -324,6 +324,14 @@ else
                         exit 3
                 fi
 		;;
+	openvpnconnected)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${openvpnconnected[0]}"
+		if [ $? -eq 0 ]; then
+                         $logtailpath -f "${openvpnconnected[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${openvpnconnected[1]}" | $greppath -c "${openvpnconnected[2]}"
+		else
+			exit 3
+		fi
+		;;
 	*)
 		echo "something went wrong, probably wrong application selected."
 		;;
