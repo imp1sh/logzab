@@ -40,6 +40,8 @@ postfixsenders=("/var/log/mail.log" "Grand\ Totals" "senders")
 postfixsendinghosts=("/var/log/mail.log" "Grand\ Totals" "sending\ hosts")
 postfixrecipients=("/var/log/mail.log" "Grand\ Totals" "recipients")
 postfixrecipienthosts=("/var/log/mail.log" "Grand\ Totals" "recipient\ hosts")
+# openvpn
+openvpnconnected=("/var/log/syslog" "ovpn" "Initialization\ Sequence\ Completed")
 
 # other
 logtailpath="/usr/sbin/logtail"

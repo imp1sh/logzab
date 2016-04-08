@@ -66,7 +66,7 @@ function checkall {
 		elif [ -f $4 ]; then
 			return 0
 		else
-			echo "obvisouly doesn logfile not exist at $4 nor does offset file at $3"
+			echo "obvisouly logfile does not exist at $4 nor does offset file at $3"
 			return 1
 		fi
 	else
@@ -326,6 +326,15 @@ else
 		;;
 	apache200)
 		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${apache200[0]}"
+		;;
+	openvpnconnected)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${openvpnconnected[0]}"
+		if [ $? -eq 0 ]; then
+                         $logtailpath -f "${openvpnconnected[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${openvpnconnected[1]}" | $greppath -c "${openvpnconnected[2]}"
+		else
+			exit 3
+		fi
+		;;
 	*)
 		echo "something went wrong, probably wrong application selected."
 		;;
