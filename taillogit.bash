@@ -324,6 +324,8 @@ else
                         exit 3
                 fi
 		;;
+	apache200)
+		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${apache200[0]}"
 	*)
 		echo "something went wrong, probably wrong application selected."
 		;;
