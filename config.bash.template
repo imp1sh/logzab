@@ -44,7 +44,12 @@ postfixrecipienthosts=("/var/log/mail.log" "Grand\ Totals" "recipient\ hosts")
 openvpnconnected=("/var/log/syslog" "ovpn" "Initialization\ Sequence\ Completed")
 
 # other
-logtailpath="/usr/sbin/logtail"
-pflogsummpath="/usr/sbin/pflogsumm"
-offsetspath="offsets"
-greppath="/bin/grep"
+pathlogtail="/usr/sbin/logtail"
+pathpflogsumm="/usr/sbin/pflogsumm"
+pathoffsets="offsets"
+pathgrep="/bin/grep"
+pathdnf="/usr/bin/dnf"
+pathsed="/usr/bin/sed"
+
+# files
+filednfupdates="/tmp/updatespending"

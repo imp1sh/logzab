@@ -38,10 +38,10 @@ function checkinode {
 function checkall {
 # 1st parameter is 1st parameter of taillog.bash which is app name $1
 # 2nd parameter is 2nd parameter of taillog.bash $2
-# 3rd parameter is offset path "$scriptdir/$offsetspath/$1$2"
+# 3rd parameter is offset path "$scriptdir/$pathoffsets/$1$2"
 # 4th parameter is logfile path "${shorewalldropifin[0]}"
-# 5th parameter is logtail path $logtailpath
-# 6th parameter is grep path $greppath
+# 5th parameter is logtail path $pathlogtail
+# 6th parameter is grep path $pathgrep
 # 7th parameter is taillogits 2nd parameter which is grepping for app "${shorewalldropifin[2]}"
 # 8th parameter is taillogits 3rd parameter which is the so called expression or filter $expression
 # return value is 0 if it's ok to run app
@@ -92,245 +92,264 @@ else
 	# differ between applications here
 	case "$1" in
 	shorewalldropifout)
-		checkall  "$1" "$2"  "$scriptdir/$offsetspath/$1$2" "${shorewalldropifout[0]}"
+		checkall  "$1" "$2"  "$scriptdir/$pathoffsets/$1$2" "${shorewalldropifout[0]}"
 		if [ $? -eq 0 ]; then
-			$logtailpath -f "${shorewalldropifout[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${shorewalldropifout[2]}" | $greppath -c "OUT=$expression"
+			$pathlogtail -f "${shorewalldropifout[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${shorewalldropifout[2]}" | $pathgrep -c "OUT=$expression"
 		else
 			exit 3
 		fi
 		;;
 	shorewalldropifin)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${shorewalldropifin[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${shorewalldropifin[0]}"
 		if [ $? -eq 0 ]; then
-			 $logtailpath -f "${shorewalldropifin[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${shorewalldropifin[2]}" | $greppath -c "IN=$expression"
+			 $pathlogtail -f "${shorewalldropifin[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${shorewalldropifin[2]}" | $pathgrep -c "IN=$expression"
 		else
 			exit 3
 		fi
 		;;
 	dovecotpop3login)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${dovecotpop3login[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${dovecotpop3login[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${dovecotpop3login[0]}"  -o "$scriptdir/$offsetspath/$1$2" | $greppath -c "${dovecotpop3login[2]}"
+			 $pathlogtail -f "${dovecotpop3login[0]}"  -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep -c "${dovecotpop3login[2]}"
 		else
 			exit 3
 		fi
 		;;
 	dovecotimaplogin)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${dovecotimaplogin[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${dovecotimaplogin[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${dovecotimaplogin[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath -c "${dovecotimaplogin[2]}"
+			 $pathlogtail -f "${dovecotimaplogin[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep -c "${dovecotimaplogin[2]}"
 		else
 			exit 3
 		fi
 		;;
 	fail2bansshban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bansshban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2bansshban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2bansshban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansshban[2]}" | $greppath -c Ban
+			 $pathlogtail -f "${fail2bansshban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2bansshban[2]}" | $pathgrep -c Ban
 		else
 			exit 3
 		fi
 		;;
 	fail2bansshunban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bansshunban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2bansshunban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2bansshunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansshunban[2]}" | $greppath -c Unban
+			 $pathlogtail -f "${fail2bansshunban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2bansshunban[2]}" | $pathgrep -c Unban
 		else
 			exit 3
 		fi
 		;;
 	fail2bandovecotban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bandovecotban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2bandovecotban[0]}"
                 if [ $? -eq 0 ]; then	
-			 $logtailpath -f "${fail2bandovecotban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bandovecotban[2]}" | $greppath -c Ban
+			 $pathlogtail -f "${fail2bandovecotban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2bandovecotban[2]}" | $pathgrep -c Ban
 		else
 			exit 3
 		fi
 		;;
 	fail2bandovecotunban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bandovecotunban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2bandovecotunban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2bandovecotunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bandovecotunban[2]}" | $greppath -c Unban
+			 $pathlogtail -f "${fail2bandovecotunban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2bandovecotunban[2]}" | $pathgrep -c Unban
 		else
 			exit 3
 		fi
 		;;
 	fail2banpostfixban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2banpostfixban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2banpostfixban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2banpostfixban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixban[2]}" | $greppath -c Ban
+			 $pathlogtail -f "${fail2banpostfixban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2banpostfixban[2]}" | $pathgrep -c Ban
 		else
 			exit 3
 		fi
 		;;
 	fail2banpostfixunban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2banpostfixunban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2banpostfixunban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2banpostfixunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixunban[2]}" | $greppath -c Unban
+			 $pathlogtail -f "${fail2banpostfixunban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2banpostfixunban[2]}" | $pathgrep -c Unban
 		else
 			exit 3
 		fi
 		;;
 	fail2banpostfixsaslban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2banpostfixsaslban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2banpostfixsaslban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2banpostfixsaslban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixsaslban[2]}" | $greppath -c Ban
+			 $pathlogtail -f "${fail2banpostfixsaslban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2banpostfixsaslban[2]}" | $pathgrep -c Ban
 		else
 			exit 3
 		fi
 		;;
 	fail2banpostfixsaslunban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2banpostfixsaslunban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2banpostfixsaslunban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2banpostfixsaslunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2banpostfixsaslunban[2]}" | $greppath -c Unban
+			 $pathlogtail -f "${fail2banpostfixsaslunban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2banpostfixsaslunban[2]}" | $pathgrep -c Unban
 		else
 			exit 3
 		fi
 		;;
 	fail2bansieveban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bansieveban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2bansieveban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2bansieveban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansieveban[2]}" | $greppath -c Ban
+			 $pathlogtail -f "${fail2bansieveban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2bansieveban[2]}" | $pathgrep -c Ban
 		else
 			exit 3
 		fi
 		;;
 	fail2bansieveunban)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${fail2bansieveunban[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${fail2bansieveunban[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${fail2bansieveunban[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${fail2bansieveunban[2]}" | $greppath -c Unban
+			 $pathlogtail -f "${fail2bansieveunban[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${fail2bansieveunban[2]}" | $pathgrep -c Unban
 		else
 			exit 3
 		fi
 		;;	
 	postfixreceived)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixreceived[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixreceived[0]}"
                 if [ $? -eq 0 ]; then
-			 sudo $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceived[1]}" -A 22 | $greppath -v byte | $greppath "${postfixreceived[2]}" | awk '{print $1}'
+			 sudo $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixreceived[1]}" -A 22 | $pathgrep -v byte | $pathgrep "${postfixreceived[2]}" | awk '{print $1}'
 		else
 			exit 3
 		fi
 		;;
 	postfixdelivered)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdevlivered[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixdevlivered[0]}"
 		if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixdevlivered[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdevlivered[1]}" -A 22 | $greppath -v byte | $greppath "${postfixdevlivered[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixdevlivered[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixdevlivered[1]}" -A 22 | $pathgrep -v byte | $pathgrep "${postfixdevlivered[2]}" | awk '{print $1}'
 		else
 			exit 3
 		fi
 		;;
 	postfixforwarded)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixforwarded[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixforwarded[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixforwarded[1]}" -A 22 | $greppath "${postfixforwarded[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixforwarded[1]}" -A 22 | $pathgrep "${postfixforwarded[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixdeferred)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdeferred[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixdeferred[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdeferred[1]}" -A 22 | $greppath "${postfixdeferred[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixdeferred[1]}" -A 22 | $pathgrep "${postfixdeferred[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixbounced)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixbounced[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixbounced[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixbounced[1]}" -A 22 | $greppath "${postfixbounced[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixbounced[1]}" -A 22 | $pathgrep "${postfixbounced[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixrejected)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrejected[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixrejected[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejected[1]}" -A 22 | $greppath "${postfixrejected[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixrejected[1]}" -A 22 | $pathgrep "${postfixrejected[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixrejectwarning)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrejecttwarning[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixrejecttwarning[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrejecttwarning[1]}" -A 22 | $greppath "${postfixrejecttwarning[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixrejecttwarning[1]}" -A 22 | $pathgrep "${postfixrejecttwarning[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixheld)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixheld[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixheld[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixheld[1]}" -A 22 | $greppath "${postfixheld[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixheld[1]}" -A 22 | $pathgrep "${postfixheld[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixdiscarded)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdiscarded[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixdiscarded[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdiscarded[1]}" -A 22 | $greppath "${postfixdiscarded[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixdiscarded[1]}" -A 22 | $pathgrep "${postfixdiscarded[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixreceivedkbyte)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixreceivedkbyte[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixreceivedkbyte[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixreceivedkbyte[1]}" -A 22 | $greppath "${postfixreceivedkbyte[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixreceivedkbyte[1]}" -A 22 | $pathgrep "${postfixreceivedkbyte[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixdeliveredkbyte)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixdeliveredkbyte[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixdeliveredkbyte[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixdeliveredkbyte[1]}" -A 22 | $greppath "${postfixdeliveredkbyte[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixdeliveredkbyte[1]}" -A 22 | $pathgrep "${postfixdeliveredkbyte[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixsenders)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixsenders[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixsenders[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixsenders[1]}" -A 22 | $greppath "${postfixsenders[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixsenders[1]}" -A 22 | $pathgrep "${postfixsenders[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixsendinghosts)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixsendinghosts[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixsendinghosts[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixsendinghosts[1]}" -A 22 | $greppath "${postfixsendinghosts[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixsendinghosts[1]}" -A 22 | $pathgrep "${postfixsendinghosts[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 
 		;;
 	postfixrecipients)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrecipients[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixrecipients[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrecipients[1]}" -A 22 | $greppath "${postfixrecipients[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixrecipients[1]}" -A 22 | $pathgrep "${postfixrecipients[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
 	postfixrecipienthosts)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${postfixrecipienthosts[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixrecipienthosts[0]}"
                 if [ $? -eq 0 ]; then
-			 $logtailpath -f "${postfixreceived[0]}" -o "$scriptdir/$offsetspath/$1$2" | $pflogsummpath -d today | $greppath "${postfixrecipienthosts[1]}" -A 22 | $greppath "${postfixrecipienthosts[2]}" | awk '{print $1}'
+			 $pathlogtail -f "${postfixreceived[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathpflogsumm -d today | $pathgrep "${postfixrecipienthosts[1]}" -A 22 | $pathgrep "${postfixrecipienthosts[2]}" | awk '{print $1}'
                 else
                         exit 3
                 fi
 		;;
+	dnflistenh)
+		export LANG=C
+		$pathdnf updateinfo list > $filednfupdates
+		$pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
+		$pathgrep -c enhancement $filednfupdates
+		;;
+	dnflistsec)
+		export LANG=C
+                $pathdnf updateinfo list > $filednfupdates
+                $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
+                $pathgrep -c security $filednfupdates
+                ;;
+	dnflistbf)
+		export LANG=C
+                $pathdnf updateinfo list > $filednfupdates
+                $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
+                $pathgrep -c bugfix $filednfupdates
+                ;;
+
 	apache200)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${apache200[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${apache200[0]}"
 		;;
 	openvpnconnected)
-		checkall "$1" "$2" "$scriptdir/$offsetspath/$1$2" "${openvpnconnected[0]}"
+		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${openvpnconnected[0]}"
 		if [ $? -eq 0 ]; then
-                         $logtailpath -f "${openvpnconnected[0]}" -o "$scriptdir/$offsetspath/$1$2" | $greppath "${openvpnconnected[1]}" | $greppath -c "${openvpnconnected[2]}"
+                         $pathlogtail -f "${openvpnconnected[0]}" -o "$scriptdir/$pathoffsets/$1$2" | $pathgrep "${openvpnconnected[1]}" | $pathgrep -c "${openvpnconnected[2]}"
 		else
 			exit 3
 		fi
