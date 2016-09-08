@@ -325,20 +325,20 @@ else
                 fi
 		;;
 	dnflistenh)
-		export LANG=C
+		#export LANG=C
 		$pathdnf updateinfo list > $filednfupdates
 		$pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
 		$pathgrep -c enhancement $filednfupdates
 		;;
 	dnflistsec)
-		export LANG=C
-                $pathdnf updateinfo list > $filednfupdates
+		#export LANG=C
+                #$pathdnf updateinfo list > $filednfupdates # takes too long
                 $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
                 $pathgrep -c security $filednfupdates
                 ;;
 	dnflistbf)
-		export LANG=C
-                $pathdnf updateinfo list > $filednfupdates
+		#export LANG=C
+                #$pathdnf updateinfo list > $filednfupdates # takes too long
                 $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
                 $pathgrep -c bugfix $filednfupdates
                 ;;
