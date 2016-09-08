@@ -326,7 +326,7 @@ else
 		;;
 	dnflistenh)
 		#export LANG=C
-		$pathdnf updateinfo list > $filednfupdates
+		#$pathdnf updateinfo list > $filednfupdates
 		$pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
 		$pathgrep -c enhancement $filednfupdates
 		;;
