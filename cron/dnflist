@@ -1,1 +1,1 @@
-0 */1 * * * root export LANG=C; dnf updateinfo list > /tmp/updatespending
+0 * * * * root export LANG=C; dnf updateinfo list > /tmp/updatespending

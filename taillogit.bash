@@ -342,7 +342,18 @@ else
                 $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
                 $pathgrep -c bugfix $filednfupdates
                 ;;
-
+	yumlistenh)
+		$pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
+		$pathgrep -c enhancement $filednfupdates
+		;;
+	yumlistsec)
+                $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
+                $pathgrep -c security $filednfupdates
+                ;;
+	yumlistbf)
+                $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
+                $pathgrep -c bugfix $filednfupdates
+                ;;
 	apache200)
 		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${apache200[0]}"
 		;;
