@@ -1,0 +1,1 @@
+0 * * * * root export LANG=C; yum updateinfo list > /tmp/updatespending
