@@ -354,6 +354,9 @@ else
                 $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
                 $pathgrep -c bugfix $filednfupdates
                 ;;
+	borgbackupage)
+		/opt/myborgbackup/croncheckscript
+		;;
 	apache200)
 		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${apache200[0]}"
 		;;
