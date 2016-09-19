@@ -50,6 +50,7 @@ pathoffsets="offsets"
 pathgrep="/bin/grep"
 pathdnf="/usr/bin/dnf"
 pathsed="/usr/bin/sed"
+pathwc="/usr/bin/wc"
 
 # files
 filednfupdates="/tmp/updatespending"

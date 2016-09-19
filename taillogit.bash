@@ -306,7 +306,6 @@ else
                 else
                         exit 3
                 fi
-
 		;;
 	postfixrecipients)
 		checkall "$1" "$2" "$scriptdir/$pathoffsets/$1$2" "${postfixrecipients[0]}"
@@ -324,23 +323,25 @@ else
                         exit 3
                 fi
 		;;
+	dnflistall)
+		$pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
+		$pathwc -l $filednfupdates
+		;;
 	dnflistenh)
-		#export LANG=C
-		#$pathdnf updateinfo list > $filednfupdates
 		$pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
 		$pathgrep -c enhancement $filednfupdates
 		;;
 	dnflistsec)
-		#export LANG=C
-                #$pathdnf updateinfo list > $filednfupdates # takes too long
                 $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
                 $pathgrep -c security $filednfupdates
                 ;;
 	dnflistbf)
-		#export LANG=C
-                #$pathdnf updateinfo list > $filednfupdates # takes too long
                 $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
                 $pathgrep -c bugfix $filednfupdates
+                ;;
+	yumlistall)
+                $pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
+                $pathwc -l $filednfupdates
                 ;;
 	yumlistenh)
 		$pathsed -i '/Last\ metadata\ expiration\ check/ d' $filednfupdates
